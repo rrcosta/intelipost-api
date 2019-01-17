@@ -1,0 +1,22 @@
+# PostgreSQL. Versions 9.1 and up are supported.
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['INTELIPOST_DB_USER_DEV'] %>
+  password: <%= ENV['INTELIPOST_DB_PASSWORD_DEV'] %>
+
+development:
+  <<: *default
+  database: intelipost-api_development
+
+test:
+  <<: *default
+  database: intelipost-api_test
+
+production:
+  <<: *default
+  database: intelipost-api_production
+  username: <%= ENV['INTELIPOST_DB_USER_PRD'] %>
+  password: <%= ENV['INTELIPOST_DB_PASSWORD_PRD'] %>
